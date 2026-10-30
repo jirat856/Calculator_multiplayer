@@ -1,0 +1,95 @@
+/* ===== โหมดท้าสู้ 1v1 ===== */
+.side .card:nth-child(3){animation-delay:.6s}
+.primary{
+  padding:10px 18px;border:0;border-radius:14px;cursor:pointer;font-weight:700;color:var(--optext);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--op),#fff 22%),var(--op));
+  box-shadow:0 3px 0 var(--shadow),0 0 20px var(--glow);transition:transform .15s,box-shadow .15s;
+}
+.primary:hover{transform:translateY(-2px)}
+.primary:active{transform:translateY(2px)}
+.big{width:100%}
+#battleBtn{width:100%;margin-top:4px;padding:10px}
+
+dialog#lobby{
+  width:min(440px,92vw);padding:clamp(18px,3vw,26px);border-radius:26px;color:var(--keytext);
+  border:1px solid color-mix(in srgb,var(--op) 45%,transparent);
+  background:color-mix(in srgb,var(--panel) 94%,transparent);
+  box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 60px var(--glow);
+}
+dialog#lobby::backdrop{background:rgba(10,8,25,.55);backdrop-filter:blur(6px)}
+dialog#lobby h2{margin:0 0 6px}
+dialog#lobby p{margin:0 0 14px;font-size:14px;opacity:.8}
+dialog#lobby hr{border:0;border-top:1px solid color-mix(in srgb,var(--op) 30%,transparent);margin:16px 0}
+dialog#lobby .row{margin-top:10px}
+dialog#lobby .row input{text-transform:uppercase;letter-spacing:.15em}
+#p2name{text-transform:none!important;letter-spacing:0!important}
+#lobbyMsg{min-height:20px;margin:12px 0 0!important}
+#roomCode{text-align:center;font-family:var(--font-num,inherit);font-size:clamp(32px,8vw,46px);letter-spacing:.18em;text-shadow:0 0 20px var(--glow)}
+#lobbyClose{margin-top:12px}
+
+#hud{
+  position:fixed;z-index:40;left:50%;transform:translateX(-50%);
+  top:calc(env(safe-area-inset-top,0px) + 10px);width:min(780px,96vw);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:center;
+  padding:12px 16px;border-radius:26px;color:var(--keytext);
+  background:color-mix(in srgb,var(--panel) 80%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid color-mix(in srgb,var(--op) 45%,transparent);box-shadow:0 14px 40px rgba(0,0,0,.3),0 0 50px var(--glow);
+  animation:rise .5s both;
+}
+#hud[hidden]{display:none}
+body.battle-on .wrap{padding-top:clamp(190px,26vh,230px)}
+.fighter{--c:#888;text-align:center;min-width:0}
+.fighter .pic{
+  width:clamp(52px,7vw,70px);height:clamp(52px,7vw,70px);margin:0 auto 6px;border-radius:50%;
+  background-size:cover;background-position:center;background-color:color-mix(in srgb,var(--c) 40%,var(--panel));
+  border:3px solid var(--c);box-shadow:0 0 18px color-mix(in srgb,var(--c) 60%,transparent);
+  display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;
+}
+.fighter .pic.x{}
+.fighter.hit .pic{animation:bt-hit .5s}
+.fighter.win .pic{animation:bt-win .6s}
+.fname{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hpbar{height:12px;margin:6px 0 2px;border-radius:99px;background:color-mix(in srgb,var(--c) 22%,transparent);overflow:hidden;box-shadow:inset 0 1px 4px rgba(0,0,0,.25)}
+.hpbar i{display:block;height:100%;width:100%;border-radius:inherit;background:linear-gradient(90deg,color-mix(in srgb,var(--c),#fff 30%),var(--c));transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.hptxt{font-size:12px;opacity:.75}
+.center{text-align:center;min-width:0}
+.rnd{font-size:13px;opacity:.7}
+.prob{font-family:var(--font-num,inherit);font-weight:var(--num-weight,700);font-size:clamp(26px,4.4vw,42px);line-height:1.2;text-shadow:0 0 18px var(--glow);min-height:1.2em}
+.tbar{height:6px;margin:6px 0;border-radius:99px;background:color-mix(in srgb,var(--op) 20%,transparent);overflow:hidden}
+.tbar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--eq),var(--op));transition:width .1s linear}
+.bmsg{font-size:13px;min-height:2.6em;line-height:1.3}
+.acts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:4px}
+.acts .ghost{font-size:12px;padding:5px 10px}
+.calc.frozen{pointer-events:none;filter:grayscale(.85) brightness(.85)}
+@keyframes bt-hit{20%{transform:translateX(-8px);filter:brightness(1.8) saturate(2)}60%{transform:translateX(8px)}100%{transform:none}}
+@keyframes bt-win{40%{transform:translateY(-12px) scale(1.12)}100%{transform:none}}
+@media (max-width:620px){
+  #hud{grid-template-columns:1fr 1fr;gap:8px 12px;padding:10px 12px}
+  #hud .center{grid-column:1/-1;grid-row:2}
+  body.battle-on .wrap{padding-top:300px}
+}
+
+#pack{flex:1;min-width:0;padding:8px 12px;border-radius:12px;color:var(--screentext);border:1px solid color-mix(in srgb,var(--op) 40%,transparent);background:color-mix(in srgb,var(--screen) 70%,transparent)}
+
+
+/* Modern battle HUD */
+#hud{
+  padding:14px 16px;border:1px solid var(--ui-border);border-radius:20px;
+  background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 14px 40px rgba(20,35,28,.14);
+}
+.fighter .pic{box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 12%,transparent);border-width:2px}
+.hpbar{height:9px;background:color-mix(in srgb,var(--c) 15%,var(--panel));box-shadow:none}
+.hpbar i{background:var(--c)}
+.prob{text-shadow:none;color:var(--screentext)}
+.tbar{height:5px;background:color-mix(in srgb,var(--op) 15%,var(--panel))}
+.tbar i{background:linear-gradient(90deg,var(--eq),var(--op))}
+.bmsg{color:var(--ui-muted)}
+.acts .ghost{background:var(--key)}
+body.battle-on .wrap{padding-top:clamp(190px,24vh,220px)}
+@media(max-width:620px){
+  #hud{border-radius:16px;padding:9px 10px}
+  body.battle-on .wrap{padding-top:280px}
+  .fighter .pic{width:48px;height:48px}
+  .prob{font-size:clamp(23px,7vw,34px)}
+}

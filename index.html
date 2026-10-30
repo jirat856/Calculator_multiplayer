@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>เครื่องคิดเลขตัวละคร</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="battle.css">
+</head>
+<body>
+<div class="bgimg" id="bgimg"></div>
+<div class="wrap">
+ <header class="app-header">
+  <div class="brand-mark" aria-hidden="true">✦</div>
+  <div class="brand-copy"><p class="eyebrow">CHARACTER EDITION · PERSONAL CALCULATOR</p><h1>Stellar <span>Calc</span></h1><p class="brand-subtitle">พื้นที่เล็ก ๆ สำหรับตัวเลขและตัวละครของคุณ</p></div>
+  <div class="header-status"><span class="status-dot"></span> พร้อมใช้งาน</div>
+ </header>
+ <section>
+  <div class="stage">
+   <div class="avatar" id="avatar">
+    <img id="img" alt="" hidden>
+    <svg id="mascot" viewBox="0 0 100 100" aria-hidden="true"><path d="M20 44 L24 12 L44 30Z M80 44 L76 12 L56 30Z" fill="var(--op)"/><ellipse cx="50" cy="58" rx="34" ry="30" fill="var(--op)"/><circle cx="37" cy="55" r="4" fill="var(--screentext)"/><circle cx="63" cy="55" r="4" fill="var(--screentext)"/><path d="M43 67 Q50 74 57 67" stroke="var(--screentext)" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+   </div>
+   <div class="bubble" id="bubble"></div>
+  </div>
+  <div class="calc">
+   <div class="screen"><div class="expr" id="expr"></div><div class="val" id="val">0</div></div>
+   <div class="keys" id="keys"></div>
+  </div>
+ </section>
+ <aside class="side">
+  <div class="card theme-card">
+   <div class="card-kicker">PERSONALIZE</div><h2>ธีมตัวละคร</h2>
+   <label class="drop" id="drop"><input type="file" id="file" accept="image/*">ลากรูปตัวละครมาวาง หรือกดเพื่อเลือกรูป<br><small>ระบบจะดึงสีเด่นจากรูปมาปรับทั้งเว็บ</small></label>
+   <div class="row"><label for="name">ชื่อ</label><input type="text" id="name" maxlength="16" placeholder="ชื่อตัวละคร"><button class="ghost" id="clearImg">ล้างรูป</button></div>
+   <div class="pick" id="pick"></div>
+   <div class="row"><label><input type="checkbox" id="dark"> โหมดมืด</label></div>
+   <div class="chips" id="chips"></div>
+   <p class="note">รูปและสีที่เลือกจะถูกเก็บไว้ในเบราว์เซอร์ของคุณเท่านั้น ไม่ได้อัปโหลดไปไหน</p>
+  </div>
+  <div class="card battle-card"><div class="card-kicker">CHALLENGE MODE</div><h2>ท้าสู้ 1v1</h2><p class="note" style="margin:0 0 10px;opacity:.8">ตอบโจทย์เลขให้ไวกว่าเพื่อน ใครตอบถูกก่อนโจมตีอีกฝ่าย</p><button class="primary" id="battleBtn">ท้าสู้เลย</button></div>
+  <div class="card history-card"><div class="card-kicker">RECENT ACTIVITY</div><h2>ประวัติการคิด</h2><ul id="hist"></ul></div>
+ </aside>
+</div>
+<div id="hud" hidden></div>
+<dialog id="lobby">
+ <h2>ท้าสู้ 1v1</h2>
+ <p>ตอบโจทย์เลขด้วยเครื่องคิดเลข กด = เพื่อส่งคำตอบ ตอบผิดโดนล็อกเครื่อง 3 วินาที หลอด HP ของใครหมดก่อนแพ้</p>
+ <div class="row"><label for="pack">ชุดโจทย์</label><select id="pack"><option value="mixed">ผสมทุกแบบ</option><option value="classic">บวก ลบ คูณ หาร</option><option value="missing">หาเลขที่หายไป</option><option value="percent">เปอร์เซ็นต์</option><option value="sequence">ลำดับตัวเลข</option><option value="power">ยกกำลัง / รากที่สอง</option><option value="decimal">ทศนิยม</option></select></div>
+ <p class="note" style="margin:6px 0 12px">ผู้สร้างห้องเป็นคนเลือกชุดโจทย์</p>
+ <button class="primary big" id="bLocal">เล่นเครื่องเดียวกัน (สลับกันตอบ)</button>
+ <div class="row"><input type="text" id="p2name" maxlength="16" placeholder="ชื่อผู้เล่น 2 (ไม่บังคับ)"></div>
+ <hr>
+ <button class="primary big" id="bHost">สร้างห้องออนไลน์</button>
+ <div class="row"><input type="text" id="joinCode" maxlength="5" placeholder="รหัสห้อง 5 ตัว"><button class="ghost" id="bJoin">เข้าห้อง</button></div>
+ <p id="lobbyMsg" role="status"></p>
+ <div id="roomCode" aria-live="polite"></div>
+ <button class="ghost big" id="bCopy" hidden>คัดลอกลิงก์เชิญ</button>
+ <button class="ghost big" id="lobbyClose">ปิด</button>
+</dialog>
+<script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script src="script.js"></script>
+<script src="battle.js"></script>
+</body>
+</html>
